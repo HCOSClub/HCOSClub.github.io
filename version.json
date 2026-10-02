@@ -1,0 +1,9 @@
+{
+  "channel": "release",
+  "version": "1.10.1",
+  "released": "2026-10-02",
+  "title": "VHCOS 1.10.1 正式版",
+  "notes": "系统在线更新（检查更新 + 直接更新）· 液态玻璃材质重做 · 窗口透明度修正 · 浏览器自动开窗修复 · 开机动画与安装向导时序修复",
+  "htmlUrl": "https://hcosclub.github.io/VHCOS-1.10.1.html.gz",
+  "minSupported": "1.0.0"
+}
