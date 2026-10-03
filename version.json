@@ -3,10 +3,10 @@
   "version": "1.10.1",
   "released": "2026-10-03",
   "title": "VHCOS 1.10.1 正式版（修订版）",
-  "notes": "本次修订：全系统专属光标（14 个，Posy 开源设计）· Edge 应用改为内嵌浏览器 · 修复 21 处元素缺失导致的崩溃（链式 null 访问）· 修复网络状态误报「离线」· 「关于本机」运行时间改为每秒刷新 · 修复 B站 / 本地AI 死按钮 · 修复窗口定时器泄漏 · 新增 hcosEl() 安全取元素helper",
+  "notes": "本次修订：Font Awesome / pdf.js / html2canvas 全部内联，断网状态下图标·截图·PDF 预览均可用 · 全系统专属光标（14 个）· Edge 应用改为内嵌浏览器 · 修复 21 处元素缺失崩溃 · 网络状态误报修复 · 运行时间改为每秒刷新",
   "htmlUrl": "https://hcosclub.github.io/VHCOS-1.10.1.html.gz",
-  "build": "2026-10-03T12:04:19Z",
-  "size": 7625883,
-  "sha256": "ccc768d76220d63ed1aad4360e646672",
+  "build": "2026-10-03T12:13:28Z",
+  "size": 7971778,
+  "sha256": "cf745b43bd986f57f2c4b799c34703c4",
   "minSupported": "1.0.0"
 }
