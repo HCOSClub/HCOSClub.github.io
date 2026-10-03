@@ -424,7 +424,7 @@ footer a:hover{text-decoration:underline}
       <p class="dl-sub">VHCOS 是运行在浏览器内核上的云操作系统桌面版。选择要安装的版本，下载后直接运行，无需其他依赖。</p>
       <div class="oswarn">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
-        <div><b>目前仅限 Windows 端。</b>VHCOS 桌面版当前只提供 Windows 安装包（Windows 10 及以上，64 位）。移动端与真实内核版仍在开发中，暂不提供下载。</div>
+        <div><b>目前仅限 Windows 端。</b>VHCOS 桌面版当前只提供 Windows 安装包（Windows 10 及以上，64 位）。移动端仍在开发中，暂不提供下载。</div>
       </div>
     </div>
     <div class="vlist" id="vlist"></div>
@@ -623,10 +623,11 @@ var ITEMS = [
 /* ===== 下载版本列表 =====
    下载地址：把安装包放到站点根目录后，把 url 改成 '/文件名' 即可生效（留空则显示「暂未提供」） */
 var VERSIONS = [
-  { v:'1.10.1', rec:true,  date:'2026-10-02', tag:'最新版',
-    size:'7.3 MB', type:'网页版（.gz 压缩包，下载后解压双击打开）',
-    desc:'<b>首个支持系统在线更新的版本</b>（检查更新 + 直接更新）· 液态玻璃材质重做 · 窗口透明度修正 · 浏览器自动开窗修复 · 开机动画与安装向导时序修复',
-    url:'/VHCOS-1.10.1.html.gz' },
+  { v:'1.10.1', rec:true,  date:'2026-10-03', tag:'最新版',
+    size:'7.6 MB', type:'网页版（.gz 压缩包，下载后解压双击打开）',
+    desc:'<b>首个支持系统在线更新的版本</b>（检查更新 + 直接更新）· 全系统专属光标（14 个）· Edge 应用改为内嵌浏览器 · <b>断网可用</b>：图标、截图、PDF 预览全部本地化 · 修复 21 处元素缺失导致的崩溃 · 修复网络状态误报「离线」',
+    url:'/VHCOS-1.10.1.html.gz',
+    mirror:'https://gcore.jsdelivr.net/gh/HCOSClub/HCOSClub.github.io@main/VHCOS-1.10.1.html.gz' },
   { v:'1.10.0', rec:false, date:'2026-09-27', tag:'',
     size:'', type:'',
     desc:'系统级重构 + 应用全面焕新：文件管理器完全重建、安装向导重做、WiFi 真实校验、拖动性能大幅优化。<b>该版本不含在线更新功能</b>，升级到 1.10.1 需手动下载。',
@@ -650,6 +651,7 @@ function renderVersions(){
   el.innerHTML = VERSIONS.map(function(o){
     var btn = o.url
       ? '<a class="dlbtn p" href="' + o.url + '" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>下载</a>'
+        + (o.mirror ? ' <a class="dlbtn s" href="' + o.mirror + '" download title="国内加速线路（jsDelivr），下载更快"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>加速下载</a>' : '')
       : '<span class="dlbtn g"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>暂未提供</span>';
     return '<div class="vrow' + (o.rec ? ' latest' : '') + '">' +
       '<div class="vmain">' +
@@ -682,7 +684,7 @@ function tagHTML(t){
 }
 function cardHTML(it){
   var tall = it.heroTall ? ' tall' : '';
-  var bg = it.dev ? ' dev' : ((it.badge === '真实内核' || it.badge === '移动端') ? ' g' : '');
+  var bg = it.dev ? ' dev' : (it.badge === '移动端' ? ' g' : '');
   var th = 'thumb' + tall + (it.dev ? ' dev' : '') + (it.phone ? ' phone' : '');
   return '<button class="card" onclick="go(\'' + it.id + '\')">' +
     '<div class="' + th + '">' + pic(it.hero, it.name, '', true) + '</div>' +
