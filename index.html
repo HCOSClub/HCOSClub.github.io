@@ -429,6 +429,7 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="vlist" id="vlist"></div>
     <div class="dlfoot">
+      <b>下载线路</b>：默认走国内加速线路（速度更快），旁边另提供官网直连线路备用，两者内容完全一致。<br>
       <b>安装说明</b>：下载后解压或直接运行即可，首次启动会播放开机动画并进入安装向导。若系统提示「未知发布者」，选择「更多信息 → 仍要运行」即可。<br>
       <b>升级方式</b>：<b>仅 1.10.1 及以上版本</b>支持在系统内「关于本机 → 系统版本 → 检查更新」在线升级，无需重新下载。<br>
       <b>1.10.0 及更早版本没有在线更新功能</b>，需要手动下载 1.10.1 安装包覆盖使用。
@@ -650,8 +651,8 @@ function renderVersions(){
   if (!el) return;
   el.innerHTML = VERSIONS.map(function(o){
     var btn = o.url
-      ? '<a class="dlbtn p" href="' + o.url + '" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>下载</a>'
-        + (o.mirror ? ' <a class="dlbtn s" href="' + o.mirror + '" download title="国内加速线路（jsDelivr），下载更快"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>加速下载</a>' : '')
+      ? '<a class="dlbtn p" href="' + (o.mirror || o.url) + '" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>下载</a>'
+        + (o.mirror ? ' <a class="dlbtn s" href="' + o.url + '" download title="官网直连线路（GitHub Pages）。若主线路下载异常，可改用这条。"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg>官网直连</a>' : '')
       : '<span class="dlbtn g"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>暂未提供</span>';
     return '<div class="vrow' + (o.rec ? ' latest' : '') + '">' +
       '<div class="vmain">' +
