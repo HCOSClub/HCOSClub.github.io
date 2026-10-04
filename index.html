@@ -235,6 +235,14 @@ h2{font-size:clamp(23px,3.1vw,33px);font-weight:880;letter-spacing:-.022em;line-
   background:var(--grad);color:#fff;box-shadow:0 4px 12px rgba(109,74,255,.3)}
 .vdate{font-size:12.5px;color:var(--dim);margin-top:7px;font-weight:600}
 .vdesc{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.74}
+.vchanges{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.vchg{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--muted);line-height:1.62}
+.vchg .k{flex:none;font-size:10.5px;font-weight:850;letter-spacing:.04em;padding:3px 9px;border-radius:7px;min-width:40px;text-align:center}
+.vchg .k.new{background:rgba(43,109,232,.13);color:#2b6de8}
+.vchg .k.fix{background:rgba(26,150,80,.15);color:#15803d}
+.vchg .k.imp{background:rgba(190,120,20,.15);color:#a16207}
+.vchg .k.sec{background:rgba(200,16,46,.13);color:#c8102e}
+.vchg .t{flex:1}
 .vact{flex:none}
 .oswarn{display:flex;align-items:flex-start;gap:13px;margin-top:22px;padding:17px 21px;border-radius:16px;
   background:rgba(109,74,255,.08);border:1px solid rgba(109,74,255,.17);color:#4a3690;font-size:14px;line-height:1.72;max-width:740px}
@@ -624,44 +632,78 @@ var ITEMS = [
 /* ===== 下载版本列表 =====
    下载地址：把安装包放到站点根目录后，把 url 改成 '/文件名' 即可生效（留空则显示「暂未提供」） */
 var VERSIONS = [
-  { v:'1.10.1', rec:true,  date:'2026-10-03', tag:'最新版',
+  { v:'1.10.1', patch:'1.10.1.10041035', rec:true, date:'2026-10-03', tag:'最新版',
     size:'7.6 MB', type:'网页版（.gz 压缩包，下载后解压双击打开）',
-    desc:'<b>首个支持系统在线更新的版本</b>（检查更新 + 直接更新）· 全系统专属光标（14 个）· Edge 应用改为内嵌浏览器 · <b>断网可用</b>：图标、截图、PDF 预览全部本地化 · 修复 21 处元素缺失导致的崩溃 · 修复网络状态误报「离线」',
+    desc:'首个支持<b>系统在线更新</b>的正式版：装好之后在「关于本机 → 系统版本」里就能检查并直接更新，不用再手动下载安装包。',
+    changes:[
+      ['新增', '断网可用：图标、截图、PDF 预览全部改为本地内置，不再依赖 CDN —— 断网后 360 个界面图标照常显示'],
+      ['新增', '全系统专属光标（14 个），桌面、输入框、调整大小、等待等状态全部统一'],
+      ['新增', '系统在线更新：检查更新 → 下载 → 就地替换界面文件，无需重装'],
+      ['改进', 'Edge 应用由「跳转下载页」改为窗口内直接浏览'],
+      ['改进', '「关于本机」运行时间改为每秒刷新（原来 2 秒跳一次）'],
+      ['修复', '锁屏输入密码后按 Enter 或点解锁按钮无反应'],
+      ['修复', '21 处因界面元素缺失导致的崩溃（邮件、P2P 分享、待办、设置向导等）'],
+      ['修复', '明明能上网却显示「离线」的网络状态误报'],
+      ['修复', 'B站、本地 AI 两个点了没反应的按钮'],
+      ['修复', '输入框为空时的空值崩溃']
+    ],
     url:'/VHCOS-1.10.1.html.gz',
     mirror:'https://gcore.jsdelivr.net/gh/HCOSClub/HCOSClub.github.io@main/VHCOS-1.10.1.html.gz' },
   { v:'1.10.0', rec:false, date:'2026-09-27', tag:'',
     size:'', type:'',
-    desc:'系统级重构 + 应用全面焕新：文件管理器完全重建、安装向导重做、WiFi 真实校验、拖动性能大幅优化。<b>该版本不含在线更新功能</b>，升级到 1.10.1 需手动下载。',
+    desc:'系统级重构版本。<b>该版本不含在线更新功能</b>，升级到 1.10.1 需手动下载覆盖。',
+    changes:[
+      ['重构', '文件管理器完全重建'],
+      ['重构', '安装向导重做'],
+      ['改进', 'WiFi 连接改为真实校验（密码错误不再假装成功）'],
+      ['改进', '窗口拖动性能大幅优化']
+    ],
     url:'' },
-  { v:'1.1.0', rec:false, date:'', tag:'公开旧内测版',
+  { v:'1.1.0', rec:false, date:'', tag:'公开内测版',
     size:'0.4 MB', type:'网页版（.html，下载后双击打开）',
-    desc:'HCOS 内测阶段的公开版本，新增多项系统能力与界面优化',
+    desc:'HCOS 内测阶段的公开版本，新增多项系统能力与界面优化。',
     url:'/dl/VHCOS-1.1.0.html' },
   { v:'1.0.1', rec:false, date:'', tag:'',
     size:'0.3 MB', type:'网页版（.html，下载后双击打开）',
-    desc:'HCOS 第二个版本，修复早期问题并调整界面',
+    desc:'HCOS 第二个版本，修复早期问题并调整界面。',
     url:'/dl/VHCOS-1.0.1.html' },
   { v:'1.0.0', rec:false, date:'', tag:'首个版本',
     size:'0.3 MB', type:'网页版（.html，下载后双击打开）',
-    desc:'HCOS 首个公开版本：桌面、多窗口、应用商城与内置应用',
+    desc:'HCOS 首个公开版本：桌面、多窗口、应用商城与内置应用。',
     url:'/dl/VHCOS-1.0.0.html' }
 ];
 function renderVersions(){
   var el = document.getElementById('vlist');
   if (!el) return;
+  var KIND = { '新增': 'new', '修复': 'fix', '改进': 'imp', '重构': 'imp', '安全': 'sec', '更新': 'new' };
   el.innerHTML = VERSIONS.map(function(o){
     var btn = o.url
       ? '<a class="dlbtn p" href="' + (o.mirror || o.url) + '" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>下载</a>'
         + (o.mirror ? ' <a class="dlbtn s" href="' + o.url + '" download title="官网直连线路（GitHub Pages）。若主线路下载异常，可改用这条。"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg>官网直连</a>' : '')
       : '<span class="dlbtn g"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>暂未提供</span>';
+    /* 发布信息行：日期 · 体积 · 类型 */
+    var meta = [];
+    if (o.date) meta.push('发布于 ' + o.date);
+    if (o.patch) meta.push('补丁号 ' + o.patch);
+    if (o.size) meta.push(o.size);
+    if (o.type) meta.push(o.type);
+    var metaHtml = meta.length ? '<div class="vdate">' + meta.join(' · ') + '</div>' : '';
+    /* 改动清单 */
+    var chgHtml = '';
+    if (o.changes && o.changes.length) {
+      chgHtml = '<div class="vchanges">' + o.changes.map(function(c){
+        return '<div class="vchg"><span class="k ' + (KIND[c[0]] || 'imp') + '">' + c[0] + '</span><span class="t">' + c[1] + '</span></div>';
+      }).join('') + '</div>';
+    }
     return '<div class="vrow' + (o.rec ? ' latest' : '') + '">' +
       '<div class="vmain">' +
         '<div class="vnum"><span class="n">VHCOS ' + o.v + '</span>' +
           (o.rec ? '<span class="rec">推荐安装</span>' : '') +
           (o.tag && !o.rec ? '<span class="tag">' + o.tag + '</span>' : '') +
         '</div>' +
-        (o.date ? '<div class="vdate">' + (o.date ? '发布于 ' + o.date : '') + (o.size ? (o.date ? ' · ' : '') + o.size + ' · ' + o.type : '') + '</div>' : '') +
+        metaHtml +
         '<div class="vdesc">' + o.desc + '</div>' +
+        chgHtml +
       '</div>' +
       '<div class="vact">' + btn + '</div>' +
     '</div>';
